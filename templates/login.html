@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
+    <title>login - flask chat</title>
+</head>
+<body>
+    <div class="w-screen h-screen flex justify-center items-center">
+        <div class="w-1/2 bg-slate-500 rounded-lg h-1/2">
+            <form method="post" class="grid place-items-center grid-cols-1 grid-rows-4 h-[100%] w-[100%]">
+                <h1 class="fill-black text-5xl text-center">login</h1>
+                <input type="text" placeholder="username" name="username" id="username" class="w-[80%] rounded-sm text-center">
+                <input type="password" placeholder="password" name="password" id="password" class="w-[80%] rounded-sm text-center">
+                <input type="submit">
+                <p class="text-red-900 text-base">{{error}}</p>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
