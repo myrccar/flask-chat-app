@@ -19,6 +19,7 @@
             $("#chat_messages").append(`<div class="float-right w-[70%] px-1 py-1"><div class="float-right bg-slate-50 rounded-sm">{{username}}</div><div class="float-right bg-slate-50 rounded-sm w-[100%] text-ellipsis">${message}</div></div>`);
             socket.emit("new_message_client",{"username":"{{ username }}","message":message});
             $("#message_input").val('');
+
             $("#chat_messages").animate({
             scrollTop: $(
             '#chat_messages').get(0).scrollHeight
@@ -28,7 +29,9 @@
 
         $( "#message_input" ).keydown(function(event) {
             if (event.key == "Enter"){
-                send_message();
+                if ($("#message_input").val() != ""){
+                    send_message();
+                }
             };
         });
         socket.on("new_message_server",function(data) {
@@ -51,19 +54,6 @@
         <div class="border-[0.2rem] rounded-md w-[70%] h-[95%] bg-slate-500 border-slate-900">
             <div class="overflow-y-scroll w-[100%] h-[95%]" id="chat_messages">
                 <p class="text-center">flask chat - {{ username }}</p>
-                <!-- chat from own user html test -->
-                <div class="float-right w-[70%] px-1 py-1">
-                    <div class="float-right bg-slate-50 rounded-sm">myrccar</div>
-                    <div class="float-right bg-slate-50 rounded-sm w-[100%] text-ellipsis">hi my neams f csh jhfesfbeshjfeshfhbesfbeshjbfjeskfjkexdkj; fdbhfsd jusefdhsekjf csjhfwebhjwfje hbsefbhjshf sdhkdfbhjesgfhj</div>
-                </div>
-                <!-- njhn -->
-                
-                <!-- chat from diffeent user html test -->
-                <div class="float-left w-[70%] px-1 py-1">
-                    <div class="float-left bg-slate-50 rounded-sm">not_myrccar</div>
-                    <div class="float-left bg-slate-50 rounded-sm w-[100%] text-ellipsis">hi my neams f csh jhfesfbeshjfeshfhbesfbeshjbfjeskfjkexdkj; fdbhfsd jusefdhsekjf csjhfwebhjwfje hbsefbhjshf sdhkdfbhjesgfhj</div>
-                    </div>
-                <!-- njhn -->
             </div>
             <div class="w-[100%] h-[5%]">
                 <input type="text" id="message_input" class="w-[100%] h-[100%] float-left p-0 rounded-sm" placeholder="enter message">
